@@ -12,7 +12,7 @@ export function Contact() {
   return (
     <section
       id="contact"
-      className="px-6 md:px-10 py-28 md:py-40 border-t border-gray-100"
+      className="px-5 md:px-10 py-24 md:py-40 border-t border-gray-100"
     >
       <div className="max-w-5xl mx-auto">
         <Reveal>
@@ -22,7 +22,7 @@ export function Contact() {
         </Reveal>
 
         <Reveal delay={1}>
-          <h2 className="font-sans font-semibold text-6xl md:text-8xl lg:text-[120px] leading-[0.95] tracking-[-0.045em] text-[color:var(--foreground)]">
+          <h2 className="font-sans font-semibold text-[56px] md:text-8xl lg:text-[120px] leading-[0.95] tracking-[-0.04em] text-[color:var(--foreground)]">
             Let&apos;s talk.
           </h2>
         </Reveal>
@@ -30,7 +30,7 @@ export function Contact() {
         <Reveal delay={2}>
           <a
             href={`mailto:${profile.email}`}
-            className="group mt-16 inline-flex items-center gap-3 font-sans font-medium text-3xl md:text-5xl lg:text-6xl tracking-[-0.03em] text-[color:var(--foreground)]"
+            className="group mt-12 md:mt-16 inline-flex items-center gap-3 font-sans font-medium text-[22px] md:text-5xl lg:text-6xl tracking-[-0.03em] text-[color:var(--foreground)] break-all md:break-normal"
           >
             <span className="hover-underline">{profile.email}</span>
             <span className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">↗</span>

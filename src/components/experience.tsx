@@ -8,7 +8,7 @@ import { TechChip } from "./tech-icon";
 
 export function Experience() {
   return (
-    <section id="experience" className="px-6 md:px-10 py-24 md:py-32 border-t border-gray-100">
+    <section id="experience" className="px-5 md:px-10 py-20 md:py-32 border-t border-gray-100">
       <div className="max-w-5xl mx-auto">
         <SectionHeading eyebrow="Background" title="Experience & recognition" />
 

@@ -7,13 +7,13 @@ import { profile } from "@/lib/data";
 
 export function Hero() {
   return (
-    <section id="top" className="pt-32 pb-20 md:pt-40 md:pb-28 px-6 md:px-10">
+    <section id="top" className="pt-28 pb-16 md:pt-40 md:pb-28 px-5 md:px-10">
       <div className="max-w-3xl mx-auto flex flex-col items-center text-center">
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="relative h-32 w-32 md:h-40 md:w-40 rounded-full overflow-hidden ring-1 ring-gray-200 bg-gray-50"
+          className="relative h-28 w-28 md:h-40 md:w-40 rounded-full overflow-hidden ring-1 ring-gray-200 bg-gray-50"
         >
           <Image
             src="/mukul.jpeg"
@@ -41,7 +41,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.18, ease: [0.22, 1, 0.36, 1] }}
-          className="font-serif text-4xl md:text-6xl lg:text-[72px] leading-[1.05] tracking-[-0.02em] text-[color:var(--foreground)] mt-5"
+          className="font-serif text-[36px] md:text-6xl lg:text-[72px] leading-[1.08] tracking-[-0.02em] text-[color:var(--foreground)] mt-5 px-2"
         >
           Software,
           <br />

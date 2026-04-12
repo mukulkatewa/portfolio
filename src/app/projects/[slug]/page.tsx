@@ -36,7 +36,7 @@ export default async function ProjectPage({
     <main>
       <Nav />
 
-      <article className="pt-36 pb-28 md:pt-44 md:pb-36 px-6 md:px-10">
+      <article className="pt-28 pb-24 md:pt-44 md:pb-36 px-5 md:px-10">
         <div className="max-w-5xl mx-auto">
           <Link
             href="/#work"
@@ -50,7 +50,7 @@ export default async function ProjectPage({
           </Link>
 
           <Reveal>
-            <h1 className="font-sans font-semibold text-5xl md:text-7xl leading-[1.02] tracking-[-0.04em] text-[color:var(--foreground)]">
+            <h1 className="font-sans font-semibold text-[44px] md:text-7xl leading-[1.04] tracking-[-0.035em] text-[color:var(--foreground)] break-words">
               {project.name}
             </h1>
           </Reveal>
@@ -61,7 +61,7 @@ export default async function ProjectPage({
           </Reveal>
 
           <Reveal delay={2}>
-            <div className="mt-8 flex items-center gap-4 flex-wrap text-[14px]">
+            <div className="mt-8 flex items-center gap-3 flex-wrap text-[14px]">
               {project.live && (
                 <a
                   href={project.live}
@@ -88,7 +88,7 @@ export default async function ProjectPage({
             </div>
           </Reveal>
 
-          <div className="mt-20 grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-14">
+          <div className="mt-16 md:mt-20 grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-14">
             <div className="md:col-span-8 space-y-14">
               <Prose title="Overview" body={project.overview} />
 

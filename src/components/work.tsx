@@ -7,7 +7,7 @@ import { SectionHeading } from "./section-heading";
 
 export function Work() {
   return (
-    <section id="work" className="px-6 md:px-10 py-24 md:py-32">
+    <section id="work" className="px-5 md:px-10 py-20 md:py-32">
       <div className="max-w-5xl mx-auto">
         <SectionHeading eyebrow="Projects" title="What I've built" />
 
@@ -27,7 +27,7 @@ export function Work() {
             >
               <Link
                 href={`/projects/${p.slug}`}
-                className="group grid grid-cols-12 gap-4 md:gap-8 py-7 md:py-8 -mx-4 px-4 rounded-sm transition-colors duration-200 hover:bg-gray-50"
+                className="group grid grid-cols-12 gap-3 md:gap-8 py-6 md:py-8 -mx-3 px-3 md:-mx-4 md:px-4 rounded-sm transition-colors duration-200 hover:bg-gray-50"
               >
                 <div className="col-span-12 md:col-span-2 flex md:flex-col items-baseline md:items-start gap-3 md:gap-1.5">
                   <span className="font-mono text-[12px] text-[color:var(--muted)]">
@@ -47,7 +47,7 @@ export function Work() {
                   </p>
                 </div>
 
-                <div className="col-span-12 md:col-span-3 flex flex-col gap-3 md:items-end">
+                <div className="col-span-12 md:col-span-3 flex items-center justify-between md:flex-col md:items-end md:justify-start gap-3">
                   <div className="flex flex-wrap gap-1.5 md:justify-end">
                     {p.stack.slice(0, 3).map((s) => (
                       <span
@@ -58,7 +58,7 @@ export function Work() {
                       </span>
                     ))}
                   </div>
-                  <span className="text-[13.5px] text-[color:var(--muted)] group-hover:text-[color:var(--foreground)] transition-colors inline-flex items-center gap-1">
+                  <span className="text-[13.5px] text-[color:var(--muted)] group-hover:text-[color:var(--foreground)] transition-colors inline-flex items-center gap-1 shrink-0">
                     View
                     <span className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">↗</span>
                   </span>
