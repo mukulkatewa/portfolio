@@ -43,7 +43,7 @@ export function Hero() {
           transition={{ duration: 0.8, delay: 0.18, ease: [0.22, 1, 0.36, 1] }}
           className="font-serif text-4xl md:text-6xl lg:text-[72px] leading-[1.05] tracking-[-0.02em] text-[color:var(--foreground)] mt-5"
         >
-          software,
+          Software,
           <br />
           quietly engineered.
         </motion.h1>
@@ -66,7 +66,7 @@ export function Hero() {
           className="mt-8 flex items-center gap-3 flex-wrap justify-center"
         >
           <a
-            href={`mailto:${profile.email}`}
+            href={`mailto:${profile.email}?subject=Let%27s%20connect`}
             className="group inline-flex items-center gap-2 text-[14px] pl-5 pr-2 py-2 rounded-full bg-[color:var(--foreground)] text-[color:var(--background)] hover:opacity-90 transition-opacity"
           >
             connect with me
