@@ -9,7 +9,7 @@ export function OpenSource() {
       className="py-20 md:py-32 border-t border-[color:var(--border-soft)]"
     >
       <div>
-        <SectionHeading eyebrow="Open Source" title="Contributions" />
+        <SectionHeading index="03" eyebrow="Open Source" title="Contributions" />
 
         <div className="border-t border-[color:var(--border)]">
           {openSource.map((o) => (
@@ -29,7 +29,7 @@ export function OpenSource() {
                   </span>
                 </div>
                 <div className="col-span-12 md:col-span-7">
-                  <h3 className="text-[22px] md:text-[24px] font-semibold tracking-[-0.015em] text-[color:var(--foreground)]">
+                  <h3 className="text-[22px] md:text-[24px] font-semibold tracking-[-0.015em] text-[color:var(--foreground)] group-hover:text-[color:var(--accent)] transition-colors">
                     {o.project}
                   </h3>
                   <p className="text-[13px] text-[color:var(--muted-2)] font-mono mt-1">
@@ -40,7 +40,7 @@ export function OpenSource() {
                   </p>
                 </div>
                 <div className="col-span-12 md:col-span-3 md:text-right flex md:justify-end">
-                  <span className="text-[13.5px] text-[color:var(--muted)] group-hover:text-[color:var(--foreground)] transition-colors inline-flex items-center gap-1">
+                  <span className="text-[13.5px] text-[color:var(--muted)] group-hover:text-[color:var(--accent)] transition-colors inline-flex items-center gap-1">
                     View PRs
                     <span className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">↗</span>
                   </span>

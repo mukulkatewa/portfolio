@@ -75,7 +75,7 @@ export default async function ProjectPage({
                   href={project.live}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group inline-flex items-center gap-2 px-4 py-2 rounded-md bg-[color:var(--foreground)] text-[color:var(--background)] hover:opacity-90 transition-opacity"
+                  className="group inline-flex items-center gap-2 px-4 py-2 rounded-md bg-[color:var(--accent)] text-[color:var(--accent-contrast)] hover:opacity-90 transition-opacity"
                 >
                   <ExternalLink size={14} />
                   Link
@@ -262,7 +262,7 @@ function LearnSection({ items }: { items: string[] }) {
         <ul className="space-y-4">
           {items.map((h) => (
             <li key={h} className="flex gap-4 text-[17px] leading-[1.75] text-[color:var(--muted)]">
-              <span className="mt-[0.75em] h-[2px] w-[14px] shrink-0 bg-[color:var(--foreground)]" />
+              <span className="mt-[0.75em] h-[2px] w-[14px] shrink-0 bg-[color:var(--accent)]" />
               <span>{h}</span>
             </li>
           ))}

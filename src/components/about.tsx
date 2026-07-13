@@ -52,7 +52,7 @@ export function About() {
           href="https://cloveos.com"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-[color:var(--foreground)] hover-underline"
+          className="text-[color:var(--accent)] hover-underline"
         >
           CloveOS
         </a>
@@ -68,10 +68,10 @@ export function About() {
       >
         <a
           href={`mailto:${profile.email}?subject=Let%27s%20connect`}
-          className="group inline-flex items-center gap-2 text-[14px] pl-5 pr-2 py-2 rounded-full bg-[color:var(--foreground)] text-[color:var(--background)] hover:opacity-90 transition-opacity"
+          className="group inline-flex items-center gap-2 text-[14px] pl-5 pr-2 py-2 rounded-full bg-[color:var(--accent)] text-[color:var(--accent-contrast)] hover:opacity-90 transition-opacity"
         >
           connect with me
-          <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-[color:var(--background)]/15 transition-transform group-hover:translate-x-0.5">
+          <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-[color:var(--accent-contrast)]/15 transition-transform group-hover:translate-x-0.5">
             <ArrowRight size={13} />
           </span>
         </a>

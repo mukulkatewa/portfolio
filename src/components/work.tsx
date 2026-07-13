@@ -10,7 +10,7 @@ export function Work() {
   return (
     <section id="work" className="py-20 md:py-32 border-t border-[color:var(--border-soft)]">
       <div>
-        <SectionHeading eyebrow="Projects" title="What I've built" />
+        <SectionHeading index="02" eyebrow="Projects" title="What I've built" />
 
         <div className="border-t border-[color:var(--border)]">
           {projects.map((p, i) => (
@@ -45,7 +45,7 @@ export function Work() {
                     className="hidden sm:block h-11 w-11 md:h-12 md:w-12 shrink-0 rounded-lg overflow-hidden mt-1"
                   />
                   <div>
-                    <h3 className="text-[22px] md:text-[24px] font-semibold tracking-[-0.015em] text-[color:var(--foreground)]">
+                    <h3 className="text-[22px] md:text-[24px] font-semibold tracking-[-0.015em] text-[color:var(--foreground)] group-hover:text-[color:var(--accent)] transition-colors">
                       {p.name}
                     </h3>
                     <p className="text-[16px] text-[color:var(--muted)] mt-2 leading-[1.65] max-w-xl">
@@ -65,7 +65,7 @@ export function Work() {
                       </span>
                     ))}
                   </div>
-                  <span className="text-[13.5px] text-[color:var(--muted)] group-hover:text-[color:var(--foreground)] transition-colors inline-flex items-center gap-1 shrink-0">
+                  <span className="text-[13.5px] text-[color:var(--muted)] group-hover:text-[color:var(--accent)] transition-colors inline-flex items-center gap-1 shrink-0">
                     View
                     <span className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">↗</span>
                   </span>

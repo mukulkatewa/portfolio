@@ -10,7 +10,7 @@ export function Experience() {
   return (
     <section id="experience" className="py-20 md:py-32 border-t border-[color:var(--border-soft)]">
       <div>
-        <SectionHeading eyebrow="Background" title="Experience & recognition" />
+        <SectionHeading index="01" eyebrow="Background" title="Experience & recognition" />
 
         <div className="border-t border-[color:var(--border)]">
           {experience.map((job, i) => (

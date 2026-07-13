@@ -3,30 +3,30 @@
 import { useState } from "react";
 import { Moon, Sun } from "lucide-react";
 
-function getInitialDark() {
+function getInitialLight() {
   if (typeof document === "undefined") return false;
-  return document.documentElement.classList.contains("dark");
+  return document.documentElement.classList.contains("light");
 }
 
 export function ThemeToggle({ className }: { className?: string }) {
-  const [dark, setDark] = useState(getInitialDark);
+  const [light, setLight] = useState(getInitialLight);
 
   function toggle() {
-    const next = !dark;
-    setDark(next);
-    document.documentElement.classList.toggle("dark", next);
-    localStorage.setItem("theme", next ? "dark" : "light");
+    const next = !light;
+    setLight(next);
+    document.documentElement.classList.toggle("light", next);
+    localStorage.setItem("theme", next ? "light" : "dark");
   }
 
   return (
     <button
       type="button"
       onClick={toggle}
-      aria-label={dark ? "Switch to light mode" : "Switch to dark mode"}
+      aria-label={light ? "Switch to dark mode" : "Switch to light mode"}
       suppressHydrationWarning
       className={`inline-flex items-center justify-center h-9 w-9 rounded-full border border-[color:var(--border)] text-[color:var(--muted)] hover:text-[color:var(--foreground)] hover:border-[color:var(--border-strong)] transition-colors ${className ?? ""}`}
     >
-      {dark ? <Sun size={15} /> : <Moon size={15} />}
+      {light ? <Moon size={15} /> : <Sun size={15} />}
     </button>
   );
 }
