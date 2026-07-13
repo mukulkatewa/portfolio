@@ -12,9 +12,9 @@ export function Contact() {
   return (
     <section
       id="contact"
-      className="py-24 md:py-40 border-t border-[color:var(--border-soft)]"
+      className="px-5 md:px-10 py-24 md:py-40 border-t border-gray-100"
     >
-      <div>
+      <div className="max-w-5xl mx-auto">
         <Reveal>
           <p className="font-mono text-[12px] uppercase tracking-[0.18em] text-[color:var(--muted)] mb-8">
             Contact
@@ -30,14 +30,14 @@ export function Contact() {
         <Reveal delay={2}>
           <a
             href={`mailto:${profile.email}`}
-            className="group mt-12 md:mt-16 inline-flex items-center gap-3 font-sans font-medium text-[22px] md:text-5xl lg:text-6xl tracking-[-0.03em] text-[color:var(--foreground)] hover:text-[color:var(--accent)] transition-colors break-all md:break-normal"
+            className="group mt-12 md:mt-16 inline-flex items-center gap-3 font-sans font-medium text-[22px] md:text-5xl lg:text-6xl tracking-[-0.03em] text-[color:var(--foreground)] break-all md:break-normal"
           >
             <span className="hover-underline">{profile.email}</span>
             <span className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">↗</span>
           </a>
         </Reveal>
 
-        <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8 border-t border-[color:var(--border)] pt-10">
+        <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8 border-t border-gray-200 pt-10">
           {links.map((l, i) => (
             <Reveal key={l.label} delay={i}>
               <a
@@ -49,9 +49,9 @@ export function Contact() {
                 <span className="font-mono text-[11px] uppercase tracking-[0.15em] text-[color:var(--muted)]">
                   {l.label}
                 </span>
-                <span className="flex items-center gap-1.5 text-[16px] text-[color:var(--foreground)] group-hover:text-[color:var(--accent)] transition-colors">
+                <span className="flex items-center gap-1.5 text-[16px] text-[color:var(--foreground)]">
                   <span className="hover-underline truncate">{l.value}</span>
-                  <span className="shrink-0 text-[color:var(--muted)] group-hover:text-[color:var(--accent)] transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5">↗</span>
+                  <span className="shrink-0 text-[color:var(--muted)] transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5">↗</span>
                 </span>
               </a>
             </Reveal>

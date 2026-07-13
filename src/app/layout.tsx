@@ -12,30 +12,12 @@ export const metadata: Metadata = {
     "Backend & full-stack engineer — distributed systems, APIs, and low-latency services.",
 };
 
-const themeInitScript = `
-(function () {
-  try {
-    var stored = localStorage.getItem("theme");
-    document.documentElement.classList.toggle("light", stored === "light");
-  } catch (e) {}
-})();
-`;
-
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html
-      lang="en"
-      className={`${inter.variable} ${fraunces.variable} ${jetbrains.variable}`}
-      suppressHydrationWarning
-    >
-      <head>
-        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
-      </head>
-      <body className="min-h-screen" suppressHydrationWarning>
-        {children}
-      </body>
+    <html lang="en" className={`${inter.variable} ${fraunces.variable} ${jetbrains.variable}`}>
+      <body className="min-h-screen">{children}</body>
     </html>
   );
 }

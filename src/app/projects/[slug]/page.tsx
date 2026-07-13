@@ -4,7 +4,6 @@ import { ArrowLeft, Code2, ExternalLink } from "lucide-react";
 import { projects, getProject } from "@/lib/data";
 import { Nav } from "@/components/nav";
 import { Reveal } from "@/components/motion-primitives";
-import { ProjectVisual } from "@/components/project-visual";
 
 export function generateStaticParams() {
   return projects.map((p) => ({ slug: p.slug }));
@@ -51,13 +50,6 @@ export default async function ProjectPage({
           </Link>
 
           <Reveal>
-            <ProjectVisual
-              seed={project.category}
-              className="h-28 md:h-40 w-full rounded-2xl overflow-hidden mb-10"
-            />
-          </Reveal>
-
-          <Reveal>
             <h1 className="font-sans font-semibold text-[44px] md:text-7xl leading-[1.04] tracking-[-0.035em] text-[color:var(--foreground)] break-words">
               {project.name}
             </h1>
@@ -75,7 +67,7 @@ export default async function ProjectPage({
                   href={project.live}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group inline-flex items-center gap-2 px-4 py-2 rounded-md bg-[color:var(--accent)] text-[color:var(--accent-contrast)] hover:opacity-90 transition-opacity"
+                  className="group inline-flex items-center gap-2 px-4 py-2 rounded-md bg-[color:var(--foreground)] text-[color:var(--background)] hover:opacity-90 transition-opacity"
                 >
                   <ExternalLink size={14} />
                   Link
@@ -126,7 +118,7 @@ export default async function ProjectPage({
                   {project.stack.map((s) => (
                     <span
                       key={s}
-                      className="font-mono text-[11.5px] px-2.5 py-1 rounded-full border border-[color:var(--border)] text-[color:var(--muted)]"
+                      className="font-mono text-[11.5px] px-2.5 py-1 rounded-full border border-gray-200 text-[color:var(--muted)]"
                     >
                       {s}
                     </span>
@@ -183,7 +175,7 @@ export default async function ProjectPage({
           </div>
 
           <Reveal>
-            <div className="mt-28 pt-10 border-t border-[color:var(--border)] flex items-center justify-between gap-4">
+            <div className="mt-28 pt-10 border-t border-gray-200 flex items-center justify-between gap-4">
               <Link
                 href="/#work"
                 className="group inline-flex items-center gap-2 text-[15px] text-[color:var(--muted)] hover:text-[color:var(--foreground)] transition-colors"
@@ -262,7 +254,7 @@ function LearnSection({ items }: { items: string[] }) {
         <ul className="space-y-4">
           {items.map((h) => (
             <li key={h} className="flex gap-4 text-[17px] leading-[1.75] text-[color:var(--muted)]">
-              <span className="mt-[0.75em] h-[2px] w-[14px] shrink-0 bg-[color:var(--accent)]" />
+              <span className="mt-[0.75em] h-[2px] w-[14px] shrink-0 bg-[color:var(--foreground)]" />
               <span>{h}</span>
             </li>
           ))}
@@ -274,8 +266,8 @@ function LearnSection({ items }: { items: string[] }) {
 
 function SidebarPanel({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <div className="rounded-lg border border-[color:var(--border)] bg-[color:var(--background)] p-5">
-      <p className="font-mono text-[11px] uppercase tracking-[0.15em] text-[color:var(--muted-2)] mb-4 pb-3 border-b border-[color:var(--border-soft)]">
+    <div className="rounded-lg border border-gray-200 bg-white p-5">
+      <p className="font-mono text-[11px] uppercase tracking-[0.15em] text-[color:var(--muted-2)] mb-4 pb-3 border-b border-gray-100">
         {title}
       </p>
       {children}

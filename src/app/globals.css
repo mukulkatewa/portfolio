@@ -1,40 +1,19 @@
 @import "tailwindcss";
 
 :root {
-  --background: #0b0d10;
-  --surface: #12161b;
-  --surface-hover: #171c22;
-  --nav-bg: rgba(11, 13, 16, 0.82);
-  --foreground: #e6edf3;
-  --muted: #94a3ae;
-  --muted-2: #64748b;
-  --border: #232a31;
-  --border-soft: #1a1f24;
-  --border-strong: #333c44;
-  --accent: #5eead4;
-  --accent-soft: rgba(94, 234, 212, 0.12);
-  --accent-contrast: #06181a;
-}
-
-html.light {
   --background: #ffffff;
-  --surface: #f7f8f9;
-  --surface-hover: #eef1f2;
-  --nav-bg: rgba(255, 255, 255, 0.82);
-  --foreground: #0f172a;
-  --muted: #56606a;
-  --muted-2: #8a94a0;
-  --border: #e2e5e8;
-  --border-soft: #eef0f2;
-  --border-strong: #c7ccd1;
-  --accent: #0d9488;
-  --accent-soft: rgba(13, 148, 136, 0.08);
-  --accent-contrast: #ffffff;
+  --section-alt: #fafafa;
+  --foreground: #111827;
+  --muted: #6b7280;
+  --muted-2: #9ca3af;
+  --border: #e5e7eb;
+  --border-soft: #f3f4f6;
+  --accent: #111827;
 }
 
 @theme inline {
   --color-background: var(--background);
-  --color-surface: var(--surface);
+  --color-section-alt: var(--section-alt);
   --color-foreground: var(--foreground);
   --color-muted: var(--muted);
   --color-muted-2: var(--muted-2);
@@ -56,16 +35,13 @@ body {
 
 body {
   background: var(--background);
-  background-image: radial-gradient(ellipse 900px 500px at 15% -10%, var(--accent-soft), transparent 60%);
-  background-repeat: no-repeat;
   color: var(--foreground);
   font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
-  transition: background-color 0.25s ease, color 0.25s ease;
 }
 
 ::selection {
-  background: var(--accent);
+  background: var(--foreground);
   color: var(--background);
 }
 

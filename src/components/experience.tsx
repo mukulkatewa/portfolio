@@ -8,11 +8,11 @@ import { TechChip } from "./tech-icon";
 
 export function Experience() {
   return (
-    <section id="experience" className="py-20 md:py-32 border-t border-[color:var(--border-soft)]">
-      <div>
-        <SectionHeading index="01" eyebrow="Background" title="Experience & recognition" />
+    <section id="experience" className="px-5 md:px-10 py-20 md:py-32 border-t border-gray-100">
+      <div className="max-w-5xl mx-auto">
+        <SectionHeading eyebrow="Background" title="Experience & recognition" />
 
-        <div className="border-t border-[color:var(--border)]">
+        <div className="border-t border-gray-200">
           {experience.map((job, i) => (
             <motion.div
               key={job.company}
@@ -20,7 +20,7 @@ export function Experience() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-40px" }}
               transition={{ duration: 0.55, delay: i * 0.04, ease: [0.22, 1, 0.36, 1] }}
-              className="border-b border-[color:var(--border-soft)] py-7 md:py-8 grid grid-cols-12 gap-4 md:gap-8"
+              className="border-b border-gray-100 py-7 md:py-8 grid grid-cols-12 gap-4 md:gap-8"
             >
               <div className="col-span-12 md:col-span-2 flex md:flex-col items-baseline gap-3 md:gap-1">
                 <span className="font-mono text-[12px] text-[color:var(--muted)]">
@@ -51,7 +51,7 @@ export function Experience() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-40px" }}
               transition={{ duration: 0.55, delay: i * 0.04, ease: [0.22, 1, 0.36, 1] }}
-              className="border-b border-[color:var(--border-soft)] py-7 md:py-8 grid grid-cols-12 gap-4 md:gap-8"
+              className="border-b border-gray-100 py-7 md:py-8 grid grid-cols-12 gap-4 md:gap-8"
             >
               <div className="col-span-12 md:col-span-2">
                 <span className="font-mono text-[11px] uppercase tracking-[0.12em] text-[color:var(--muted-2)]">
