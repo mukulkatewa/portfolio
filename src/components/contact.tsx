@@ -12,9 +12,9 @@ export function Contact() {
   return (
     <section
       id="contact"
-      className="px-5 md:px-10 py-24 md:py-40 border-t border-gray-100"
+      className="py-24 md:py-40 border-t border-[color:var(--border-soft)]"
     >
-      <div className="max-w-5xl mx-auto">
+      <div>
         <Reveal>
           <p className="font-mono text-[12px] uppercase tracking-[0.18em] text-[color:var(--muted)] mb-8">
             Contact
@@ -37,7 +37,7 @@ export function Contact() {
           </a>
         </Reveal>
 
-        <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8 border-t border-gray-200 pt-10">
+        <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8 border-t border-[color:var(--border)] pt-10">
           {links.map((l, i) => (
             <Reveal key={l.label} delay={i}>
               <a

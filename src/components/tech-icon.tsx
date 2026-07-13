@@ -3,7 +3,7 @@ import type { TechIcon } from "@/lib/data";
 
 export function TechChip({ icon }: { icon: TechIcon }) {
   return (
-    <span className="inline-flex items-center gap-2 px-3.5 py-2 rounded-full border border-gray-200 bg-white text-[13.5px] text-[color:var(--foreground)] hover:border-gray-400 transition-colors">
+    <span className="inline-flex items-center gap-2 px-3.5 py-2 rounded-full border border-[color:var(--border)] bg-[color:var(--background)] text-[13.5px] text-[color:var(--foreground)] hover:border-[color:var(--border-strong)] transition-colors">
       <img
         src={`https://cdn.simpleicons.org/${icon.slug}/4b5563`}
         alt=""

@@ -6,7 +6,7 @@ export const profile = {
   email: "katewamukul@gmail.com",
   phone: "+91 9257722605",
   resumeUrl:
-    "https://drive.google.com/file/d/1bK73p0Sm6gt9KJqKyHy0IPgBNnizTbLx/view?usp=sharing",
+    "https://drive.google.com/file/d/1BO5Ejs5X4KJTKFIeP3RKYrdFW_vvSMu6/view?usp=sharing",
   socials: {
     github: "https://github.com/mukulkatewa",
     linkedin: "https://www.linkedin.com/in/mukul-katewa-33b74b216/",
@@ -15,6 +15,14 @@ export const profile = {
 };
 
 export const experience = [
+  {
+    company: "CloveOS",
+    role: "Co-founder",
+    period: "Jun 2026 — Present",
+    location: "Bengaluru, India",
+    summary:
+      "Co-founded an AI-native operating layer for factory floors — connecting machine PLCs (Siemens S7, Allen-Bradley, Modbus, OPC-UA), ERP/CRM systems, and vision pipelines into one platform, and building real-time digital twins of production lines so one supervisor can run multiple lines. Top 10% of our YC batch.",
+  },
   {
     company: "Vadai",
     role: "Software Developer Intern",
@@ -44,6 +52,79 @@ export type ProjectDetail = {
 };
 
 const projectsUnordered: ProjectDetail[] = [
+  {
+    slug: "vhe",
+    name: "Volatility Harvesting Engine",
+    tagline: "Autonomous systematic trading platform for NSE equities",
+    category: "FinTech · Trading Systems",
+    featured: true,
+    stack: ["Python", "FastAPI", "React", "TypeScript", "WebSocket", "SQLite", "Three.js"],
+    period: "2026",
+    repo: "https://github.com/mukulkatewa/volatile_harvesting_engine",
+    live: "https://mukul-vhe.duckdns.org/",
+    shortDescription:
+      "Full-stack, production-deployed systematic trading platform for Indian NSE equities — ATR-driven dynamic grids, pair-spread arbitrage, and momentum breakouts, with a real-time WebSocket dashboard, Monte Carlo risk engine, and walk-forward validation.",
+    metrics: [
+      { label: "Tests", value: "147 passing" },
+      { label: "Strategies", value: "3" },
+      { label: "Uptime", value: "24/7 on Oracle Cloud" },
+    ],
+    overview:
+      "VHE is a single-process algorithmic trading terminal for Indian NSE equities that runs autonomously after start-up. It ingests live quotes (yfinance, a simulated tick generator, or the paid Zerodha Kite WebSocket), computes EMA/ATR/ADX indicators on every tick, classifies each symbol's market regime as RANGE, TREND, or CRASH, and runs three capital-allocated strategies through a shared risk engine before routing orders to a paper or live broker. A FastAPI backend streams full platform state over WebSocket to a React/TypeScript dashboard behind Google OAuth login, backed by a Monte Carlo risk engine and a walk-forward validation harness to guard against overfitting. It's deployed 24/7 on an Oracle Cloud Always Free ARM instance behind nginx and systemd, with 147 passing tests.",
+    highlights: [
+      "Three capital-allocated strategies — ATR-driven dynamic grid (70%), pair-spread arbitrage on RELIANCE/HDFCBANK (10%), and momentum breakout (10%) — gated by a live RANGE/TREND/CRASH regime classifier.",
+      "RiskGuard enforces a daily loss cap, gross and per-symbol exposure limits, and a sentiment-driven trading halt before any order reaches the broker.",
+      "Monte Carlo risk engine (up to 100k bootstrap simulations) computing VaR95, CVaR95, probability of ruin, and Kelly-optimal position sizing.",
+      "Walk-forward validation with rolling train/test splits to measure out-of-sample Sharpe and catch overfit parameter sets.",
+      "Real-time WebSocket dashboard — Terminal, Strategies, Execution, Activity, and Risk tabs — with Google OAuth and a Three.js shader landing page.",
+    ],
+    architecture: [
+      "Quote feed (yfinance, simulated generator, or Zerodha Kite WS) ticks every 30s into a shared PlatformRuntime.",
+      "IndicatorService and RegimeService update EMA-20/ATR-14/ADX-14 and classify each symbol as RANGE, TREND, or CRASH.",
+      "StrategyOrchestrator runs the DynamicGrid, PairSpread, and Momentum strategies against the current regime and capital allocation.",
+      "RiskGuard checks every order against loss, exposure, and sentiment rules before ExecutionEngine routes it to PaperBroker or KiteBroker.",
+      "State is persisted to SQLite and broadcast over WebSocket to all connected dashboard sessions.",
+    ],
+    learnings: [
+      "Building a regime-aware strategy orchestrator that arms and disarms strategies based on live ADX and drawdown signals.",
+      "Using Monte Carlo bootstrapping and walk-forward splits to validate that a trading strategy isn't just overfit to history.",
+    ],
+  },
+  {
+    slug: "kak-fit",
+    name: "Kak Fit",
+    tagline: "Hevy-style mobile workout tracker",
+    category: "Mobile · Full-Stack",
+    featured: true,
+    stack: ["React Native", "Expo", "Next.js", "tRPC", "TypeScript", "PostgreSQL", "Prisma", "Supabase"],
+    period: "2026",
+    repo: "https://github.com/mukulkatewa/kak_fit",
+    live: "https://expo.dev/artifacts/eas/GIaEJJ-MxTCqQCjd9EeEF8Vmyb4VzqWPTtoFs97LyIg.apk",
+    shortDescription:
+      "Mobile-first workout tracker in the vein of Hevy — routine building, set-by-set logging, personal records, and nutrition tracking, built as an Expo/React Native app on a tRPC + Prisma backend.",
+    metrics: [
+      { label: "Exercises", value: "855 (Wger API)" },
+      { label: "Platform", value: "Android · iOS · Web" },
+    ],
+    overview:
+      "Kak Fit is a mobile-first workout tracker focused on logging and progress rather than social features. The mobile app is built with React Native, Expo Router, and TypeScript with light/dark themes; it talks to a Next.js + tRPC backend over a typed API, backed by PostgreSQL (via Supabase) and Prisma. Auth runs through Better Auth with Google OAuth and bearer tokens for mobile sessions. The exercise library is seeded from the Wger API (855 exercises), and nutrition tracking pulls from USDA FoodData Central for food search and macro tracking. The project is organized as a pnpm monorepo with a web (API) app, a mobile (Expo) app, and shared db/api packages.",
+    highlights: [
+      "Routine builder with program/category templates, plus a full workout logger — set types, rest timer, previous-value recall, and copy-set.",
+      "Auto-detected personal records, workout history, and progress charts for volume, duration, reps, streaks, and a muscle heatmap.",
+      "Nutrition tracking against USDA FoodData Central — food search, meal logging, daily calorie and macro rings.",
+      "Google sign-in via Better Auth with persistent mobile sessions and a typed tRPC API shared between web and mobile.",
+      "855-exercise library imported from the Wger API with per-exercise detail views and charts.",
+    ],
+    architecture: [
+      "Monorepo: apps/web (Next.js API server) and apps/mobile (Expo React Native) share packages/db (Prisma schema + import scripts) and packages/api (tRPC routers).",
+      "Mobile client authenticates via Better Auth (Google OAuth), holding a bearer token for tRPC calls to apps/web.",
+      "apps/web exposes /api/trpc for the mobile client and /api/auth for session management, backed by Prisma over Supabase Postgres.",
+    ],
+    learnings: [
+      "Sharing a typed tRPC API cleanly between a Next.js web backend and an Expo/React Native client.",
+      "Structuring a pnpm monorepo with shared db and api packages across mobile and web apps.",
+    ],
+  },
   {
     slug: "aetherius",
     name: "Aetherius",
@@ -289,6 +370,8 @@ const projectsUnordered: ProjectDetail[] = [
 ];
 
 const projectOrder = [
+  "vhe",
+  "kak-fit",
   "dexorders",
   "agrivision",
   "galilio",
@@ -338,6 +421,9 @@ export const stack: TechIcon[] = [
   { name: "MongoDB", slug: "mongodb" },
   { name: "Prisma", slug: "prisma" },
   { name: "Firebase", slug: "firebase" },
+  { name: "Supabase", slug: "supabase" },
+  { name: "FastAPI", slug: "fastapi" },
+  { name: "Expo", slug: "expo" },
   { name: "Docker", slug: "docker" },
   { name: "Linux", slug: "linux" },
   { name: "Git", slug: "git" },
@@ -346,7 +432,6 @@ export const stack: TechIcon[] = [
   { name: "C", slug: "c" },
   { name: "C++", slug: "cplusplus" },
   { name: "Python", slug: "python" },
-  { name: "OpenAI", slug: "openai" },
 ];
 
 export function getProject(slug: string) {

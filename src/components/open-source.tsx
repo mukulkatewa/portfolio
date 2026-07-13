@@ -6,19 +6,19 @@ export function OpenSource() {
   return (
     <section
       id="open-source"
-      className="px-5 md:px-10 py-20 md:py-32 border-t border-gray-100"
+      className="py-20 md:py-32 border-t border-[color:var(--border-soft)]"
     >
-      <div className="max-w-5xl mx-auto">
+      <div>
         <SectionHeading eyebrow="Open Source" title="Contributions" />
 
-        <div className="border-t border-gray-200">
+        <div className="border-t border-[color:var(--border)]">
           {openSource.map((o) => (
             <Reveal key={o.project}>
               <a
                 href={o.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group grid grid-cols-12 gap-4 md:gap-8 py-7 md:py-8 border-b border-gray-100 -mx-4 px-4 rounded-sm transition-colors duration-200 hover:bg-gray-50"
+                className="group grid grid-cols-12 gap-4 md:gap-8 py-7 md:py-8 border-b border-[color:var(--border-soft)] -mx-4 px-4 rounded-sm transition-colors duration-200 hover:bg-[color:var(--surface)]"
               >
                 <div className="col-span-12 md:col-span-2 flex md:flex-col items-baseline gap-3 md:gap-1">
                   <span className="font-mono text-[12px] text-[color:var(--muted)]">

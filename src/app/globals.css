@@ -2,18 +2,37 @@
 
 :root {
   --background: #ffffff;
-  --section-alt: #fafafa;
+  --surface: #fafafa;
+  --surface-hover: #f5f5f5;
+  --nav-bg: rgba(255, 255, 255, 0.78);
   --foreground: #111827;
   --muted: #6b7280;
   --muted-2: #9ca3af;
   --border: #e5e7eb;
   --border-soft: #f3f4f6;
-  --accent: #111827;
+  --border-strong: #d1d5db;
+  --accent: #3452d1;
+  --accent-soft: rgba(52, 82, 209, 0.1);
+}
+
+html.dark {
+  --background: #0a0a0b;
+  --surface: #131316;
+  --surface-hover: #1b1b1f;
+  --nav-bg: rgba(10, 10, 11, 0.78);
+  --foreground: #f4f4f5;
+  --muted: #a1a1aa;
+  --muted-2: #71717a;
+  --border: #27272a;
+  --border-soft: #1c1c1f;
+  --border-strong: #3f3f46;
+  --accent: #8ba1ff;
+  --accent-soft: rgba(139, 161, 255, 0.14);
 }
 
 @theme inline {
   --color-background: var(--background);
-  --color-section-alt: var(--section-alt);
+  --color-surface: var(--surface);
   --color-foreground: var(--foreground);
   --color-muted: var(--muted);
   --color-muted-2: var(--muted-2);
@@ -38,6 +57,7 @@ body {
   color: var(--foreground);
   font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
+  transition: background-color 0.25s ease, color 0.25s ease;
 }
 
 ::selection {
