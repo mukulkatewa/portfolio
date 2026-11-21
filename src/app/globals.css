@@ -1,25 +1,70 @@
 @import "tailwindcss";
 
+/*
+ * Dark is the default theme; `html.light` opts into light mode.
+ * One accent (signal blue) for links and interaction; PR states borrow
+ * GitHub's own merged/open colours so they read instantly to engineers.
+ */
 :root {
-  --background: #ffffff;
-  --section-alt: #fafafa;
-  --foreground: #111827;
-  --muted: #6b7280;
-  --muted-2: #9ca3af;
-  --border: #e5e7eb;
-  --border-soft: #f3f4f6;
-  --accent: #111827;
+  color-scheme: dark;
+  --background: #101214;
+  --surface: #16191c;
+  --hover: #181b1f;
+  --chip: #1b1e22;
+  --foreground: #e4e5e3;
+  --heading: #f4f4f2;
+  --muted: #9b9ea4;
+  --muted-2: #73777e;
+  --link: #7aa7ff;
+  --border: #2a2e34;
+  --border-soft: #1f2328;
+  --accent: #7aa7ff;
+  --merged: #a371f7;
+  --open: #3fb950;
+  --added: #3fb950;
+  --removed: #f47067;
+  --selection: #1e3a5f;
+}
+
+:root.light {
+  color-scheme: light;
+  --background: #fcfcfb;
+  --surface: #f5f5f3;
+  --hover: #f3f3f1;
+  --chip: #efefec;
+  --foreground: #1d1f23;
+  --heading: #111316;
+  --muted: #5f636b;
+  --muted-2: #868a91;
+  --link: #2457d6;
+  --border: #e3e3df;
+  --border-soft: #ececea;
+  --accent: #2457d6;
+  --merged: #8250df;
+  --open: #1a7f37;
+  --added: #1a7f37;
+  --removed: #cf222e;
+  --selection: #d2e3fc;
 }
 
 @theme inline {
   --color-background: var(--background);
-  --color-section-alt: var(--section-alt);
+  --color-surface: var(--surface);
+  --color-hover: var(--hover);
+  --color-chip: var(--chip);
   --color-foreground: var(--foreground);
+  --color-heading: var(--heading);
+  --color-link: var(--link);
   --color-muted: var(--muted);
   --color-muted-2: var(--muted-2);
   --color-border: var(--border);
+  --color-border-soft: var(--border-soft);
   --color-accent: var(--accent);
-  --font-sans: var(--font-inter);
+  --color-merged: var(--merged);
+  --color-open: var(--open);
+  --color-added: var(--added);
+  --color-removed: var(--removed);
+  --font-sans: var(--font-google-sans);
   --font-serif: var(--font-fraunces);
   --font-mono: var(--font-jetbrains);
 }
@@ -36,13 +81,16 @@ body {
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-google-sans), ui-sans-serif, system-ui, sans-serif;
+  font-size: 1.0625rem;
+  line-height: 1.75;
   -webkit-font-smoothing: antialiased;
+  transition: background-color 0.25s ease, color 0.25s ease;
 }
 
 ::selection {
-  background: var(--foreground);
-  color: var(--background);
+  background: var(--selection);
+  color: var(--foreground);
 }
 
 .font-serif {
@@ -61,6 +109,36 @@ body {
   50% { transform: rotate(10deg); }
 }
 
+@keyframes shutter {
+  from { opacity: 0.9; }
+  to { opacity: 0; }
+}
+
+@keyframes intro-up {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* The one load moment: the About intro settles in, line by line. */
+.intro > * {
+  animation: intro-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.intro > *:nth-child(2) { animation-delay: 80ms; }
+.intro > *:nth-child(3) { animation-delay: 160ms; }
+.intro > *:nth-child(4) { animation-delay: 240ms; }
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .intro > * { animation: none; }
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition-duration: 0.01ms !important; }
+}
+
 .hover-underline {
   background-image: linear-gradient(currentColor, currentColor);
   background-size: 0% 1px;
@@ -70,4 +148,17 @@ body {
 }
 .hover-underline:hover {
   background-size: 100% 1px;
+}
+
+/* Inline prose links (bio text) */
+.prose-link {
+  color: var(--link);
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--link) 45%, transparent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+  transition: text-decoration-color 0.2s ease;
+}
+.prose-link:hover {
+  text-decoration-color: var(--link);
 }

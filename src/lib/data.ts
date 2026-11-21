@@ -1,35 +1,62 @@
 export const profile = {
   name: "Mukul Katewa",
-  role: "Software Engineer",
-  tagline: "Backend · Distributed Systems · Full-Stack",
-  location: "Bengaluru, India",
+  role: "Backend & AI Engineer",
+  tagline: "Backend, AI Systems, Full-Stack",
+  location: "Jaipur, India",
   email: "katewamukul@gmail.com",
   phone: "+91 9257722605",
   resumeUrl:
-    "https://drive.google.com/file/d/1BO5Ejs5X4KJTKFIeP3RKYrdFW_vvSMu6/view?usp=sharing",
+    "https://drive.google.com/file/d/1qoUegJH2OjNsJeI3bhQIEdYf4Iex_kzv/view?usp=drive_link",
+  // Same Drive file, as an embeddable preview and a direct download.
+  resumePreviewUrl: "https://drive.google.com/file/d/1qoUegJH2OjNsJeI3bhQIEdYf4Iex_kzv/preview",
+  resumeDownloadUrl:
+    "https://drive.google.com/uc?export=download&id=1qoUegJH2OjNsJeI3bhQIEdYf4Iex_kzv",
   socials: {
     github: "https://github.com/mukulkatewa",
     linkedin: "https://www.linkedin.com/in/mukul-katewa-33b74b216/",
     x: "https://x.com/katewa_saab",
+    leetcode: "https://leetcode.com/u/mukulkatewa/",
   },
 };
 
-export const experience = [
+export const education = {
+  school: "IIIT Kota",
+  degree: "B.Tech, Electronics and Communication",
+  period: "Aug 2023 — May 2027",
+  location: "Kota, Rajasthan",
+};
+
+export type Job = {
+  company: string;
+  role: string;
+  period: string;
+  location: string;
+  summary: string;
+  bullets: string[];
+};
+
+export const experience: Job[] = [
   {
     company: "CloveOS",
-    role: "Co-founder",
-    period: "Jun 2026 — Present",
-    location: "Bengaluru, India",
-    summary:
-      "Co-founded an AI-native operating layer for factory floors — connecting machine PLCs (Siemens S7, Allen-Bradley, Modbus, OPC-UA), ERP/CRM systems, and vision pipelines into one platform, and building real-time digital twins of production lines so one supervisor can run multiple lines. Top 10% of our YC batch.",
+    role: "Co-Founder & Founding Engineer",
+    period: "Jan 2026 — Sep 2026",
+    location: "Mumbai",
+    summary: "Industrial AI platform that runs AI workflows on the factory floor, on-premises.",
+    bullets: [
+      "Built backend infrastructure connecting factory systems and operational data to on-premises model inference.",
+      "Designed 3 factory-local AI workflows for monitoring, maintenance insights, and shift reporting, cutting reliance on cloud processing.",
+    ],
   },
   {
     company: "Vadai",
     role: "Software Developer Intern",
     period: "May 2025 — Oct 2025",
     location: "Remote",
-    summary:
-      "Built backend infrastructure for an EdTech MVP — Node/Express APIs, PostgreSQL schemas, caching, OpenAI integrations, and JWT-based RBAC with request logging.",
+    summary: "Python and FastAPI backends for LLM-powered applications.",
+    bullets: [
+      "Built LangChain RAG pipelines for ingestion, chunking, embeddings, and semantic retrieval behind grounded LLM answers.",
+      "Cut response latency by 15% through retrieval tuning and query-processing improvements.",
+    ],
   },
 ];
 
@@ -56,7 +83,7 @@ const projectsUnordered: ProjectDetail[] = [
     slug: "vhe",
     name: "Volatility Harvesting Engine",
     tagline: "Autonomous systematic trading platform for NSE equities",
-    category: "FinTech · Trading Systems",
+    category: "FinTech, Trading Systems",
     featured: true,
     stack: ["Python", "FastAPI", "React", "TypeScript", "WebSocket", "SQLite", "Three.js"],
     period: "2026",
@@ -91,10 +118,46 @@ const projectsUnordered: ProjectDetail[] = [
     ],
   },
   {
+    slug: "ai-interviewer",
+    name: "AI Voice Interviewer",
+    tagline: "Real-time voice interviews with grounded, scored reports",
+    category: "AI, Backend",
+    featured: true,
+    stack: ["FastAPI", "LangGraph", "WebSocket", "Groq Whisper", "Piper TTS", "PostgreSQL", "Supabase"],
+    period: "2026",
+    repo: "https://github.com/mukulkatewa/ai-interviewer",
+    live: "https://ai-interviewer-five-black.vercel.app/",
+    shortDescription:
+      "FastAPI/WebSocket voice-interview pipeline with browser VAD, Whisper transcription, streaming LLM replies, and sentence-by-sentence TTS, ending in transcript-grounded scored reports.",
+    metrics: [
+      { label: "DB latency", value: "146 ms → 4 ms" },
+      { label: "Transport", value: "WebSocket" },
+      { label: "Scoring", value: "LangGraph" },
+    ],
+    overview:
+      "A voice-first mock interview platform. The browser detects speech with VAD and streams audio over a WebSocket to a FastAPI service, which transcribes it with Groq Whisper, streams an LLM reply back, and synthesizes Piper TTS sentence by sentence so the interviewer speaks continuously instead of waiting for a full response. When the interview ends, a report is built from the transcript: metrics are computed in code, quotes are verified against what was actually said, and an LLM scores against a calibrated rubric. Resume and job-description inputs are treated as untrusted and isolated from the instructions, and report scoring can optionally run as a parallel LangGraph graph.",
+    highlights: [
+      "Streaming voice loop: browser VAD → Groq Whisper STT → streaming LLM → sentence-level Piper TTS.",
+      "Cut database query latency from 146 ms to 4 ms by co-locating the web app, FastAPI service, and Supabase Postgres in Mumbai.",
+      "Transcript-grounded reports with code-computed metrics, verified quotes, and calibrated rubric scoring.",
+      "Untrusted resume/JD inputs isolated from prompts; optional LangGraph execution scores report sections in parallel.",
+    ],
+    architecture: [
+      "Browser captures audio, runs VAD, and streams utterances to FastAPI over a WebSocket.",
+      "FastAPI transcribes with Groq Whisper and streams LLM tokens back as they arrive.",
+      "Completed sentences are synthesized with Piper TTS and played back immediately.",
+      "On completion, the transcript feeds a report pipeline (optionally a LangGraph graph) that computes metrics, verifies quotes, and scores.",
+    ],
+    learnings: [
+      "Region placement matters more than query tuning when every request crosses an ocean.",
+      "Keeping LLM scoring honest by computing what code can compute and verifying every quoted line.",
+    ],
+  },
+  {
     slug: "kak-fit",
     name: "Kak Fit",
     tagline: "Hevy-style mobile workout tracker",
-    category: "Mobile · Full-Stack",
+    category: "Mobile, Full-Stack",
     featured: true,
     stack: ["React Native", "Expo", "Next.js", "tRPC", "TypeScript", "PostgreSQL", "Prisma", "Supabase"],
     period: "2026",
@@ -104,7 +167,7 @@ const projectsUnordered: ProjectDetail[] = [
       "Mobile-first workout tracker in the vein of Hevy — routine building, set-by-set logging, personal records, and nutrition tracking, built as an Expo/React Native app on a tRPC + Prisma backend.",
     metrics: [
       { label: "Exercises", value: "855 (Wger API)" },
-      { label: "Platform", value: "Android · iOS · Web" },
+      { label: "Platform", value: "Android, iOS, Web" },
     ],
     overview:
       "Kak Fit is a mobile-first workout tracker focused on logging and progress rather than social features. The mobile app is built with React Native, Expo Router, and TypeScript with light/dark themes; it talks to a Next.js + tRPC backend over a typed API, backed by PostgreSQL (via Supabase) and Prisma. Auth runs through Better Auth with Google OAuth and bearer tokens for mobile sessions. The exercise library is seeded from the Wger API (855 exercises), and nutrition tracking pulls from USDA FoodData Central for food search and macro tracking. The project is organized as a pnpm monorepo with a web (API) app, a mobile (Expo) app, and shared db/api packages.",
@@ -129,19 +192,19 @@ const projectsUnordered: ProjectDetail[] = [
     slug: "aetherius",
     name: "Aetherius",
     tagline: "AI-powered business workflow optimization",
-    category: "AI · Workflow",
+    category: "AI, Workflow",
     featured: true,
     stack: ["Next.js", "TypeScript", "OpenAI", "Node.js"],
     period: "2025",
     shortDescription:
-      "Generative-AI platform for automating and optimizing enterprise workflows — winner of the OpenAI × NxtWave GenAI Buildathon among 2,000+ teams.",
+      "Generative-AI platform for automating and optimizing enterprise workflows — won the OpenAI Buildathon regional finals in a field of 2,000+ teams.",
     overview:
-      "Aetherius is a generative-AI platform that ingests existing business workflows, identifies inefficiencies, and proposes optimized replacements driven by agentic LLM planning. It was built in under a week for the OpenAI × NxtWave GenAI Buildathon and took first place among 2,000+ competing teams. The stack pairs a Next.js frontend with a typed Node backend and the OpenAI API for planning and rewriting workflow graphs.",
+      "Aetherius is a generative-AI platform that ingests existing business workflows, identifies inefficiencies, and proposes optimized replacements driven by agentic LLM planning. It was built in under a week for the OpenAI Buildathon and won the regional finals in a field of 2,000+ teams. The stack pairs a Next.js frontend with a typed Node backend and the OpenAI API for planning and rewriting workflow graphs.",
     highlights: [
       "Ingests workflow graphs (process steps, owners, inputs) and classifies bottlenecks.",
       "LLM-generated optimized workflows with measurable time/cost deltas.",
       "Clean review UX showing original vs. optimized side by side.",
-      "Winner — OpenAI × NxtWave GenAI Buildathon (1st / 2,000+ teams).",
+      "Winner, OpenAI Buildathon regional finals (2,000+ teams).",
     ],
     learnings: [
       "Designing an LLM pipeline that returns structured, auditable plans.",
@@ -152,7 +215,7 @@ const projectsUnordered: ProjectDetail[] = [
     slug: "clove",
     name: "Clove",
     tagline: "Microkernel runtime for AI agents",
-    category: "AI · Systems",
+    category: "AI, Systems",
     featured: true,
     stack: ["Microkernel", "IPC", "Capability-based", "Sandbox"],
     period: "2025",
@@ -216,23 +279,26 @@ const projectsUnordered: ProjectDetail[] = [
     slug: "agrivision",
     name: "AgriVision",
     tagline: "AI-powered precision agriculture with satellite analytics",
-    category: "Full-Stack · AI",
+    category: "Full-Stack, AI",
     featured: true,
     stack: ["React", "Vite", "Node.js", "Express", "Firebase", "Tailwind CSS", "Recharts", "Leaflet"],
-    period: "2025",
+    period: "2026",
     repo: "https://github.com/mukulkatewa/farmAnalysis",
-    live: "https://frontend-taupe-rho-64.vercel.app/",
+    live: "https://farm-analysis-zeta.vercel.app/",
     shortDescription:
-      "Full-stack precision agriculture platform with satellite imagery, IoT sensors, AI chat, and multilingual support. National finalist at Smart India Hackathon.",
+      "Precision agriculture platform with CNN/YOLO crop-health models, Sentinel-2 vegetation indices, and 16 region-specific LSTM risk forecasters. Smart India Hackathon national finalist.",
     metrics: [
-      { label: "Languages", value: "EN · HI · BN" },
-      { label: "Indices", value: "NDVI · EVI · NDRE" },
+      { label: "Languages", value: "EN, HI, BN" },
+      { label: "Indices", value: "NDVI, NDRE, SAVI, EVI" },
+      { label: "LSTM models", value: "16 agro-zones" },
       { label: "SIH", value: "National Finalist" },
     ],
     overview:
       "AgriVision is a full-stack precision-agriculture platform combining Sentinel-2 satellite imagery, IoT sensor telemetry, and AI to give farmers concrete, localized insights. The dashboard is a React/Vite app styled with Tailwind and wired up with Recharts and Leaflet for satellite analytics; the backend is an Express API with controllers and services for NDVI/analytics ingestion, AI descriptions, and PDF report generation. It integrates Firebase Auth + Realtime DB for identity and sync, Sentinel Hub for imagery, and Gemini/Groq for LLM features — including the Kisan Mitra assistant. The UI is multilingual (English, Hindi, Bengali) and designed for rural connectivity. AgriVision was selected as a national finalist at the Smart India Hackathon.",
     highlights: [
-      "Real-time vegetation indices (NDVI, EVI, NDRE) with interactive map overlays.",
+      "CNN and YOLO models for crop-health analysis, including pest and leaf-disease identification.",
+      "16 region-specific LSTM models aligned with ICAR agro-climatic zones, trained on NASA POWER data across 19 factors to forecast next-day, weekly, and biweekly crop risk.",
+      "Four vegetation indices (NDVI, NDRE, SAVI, EVI) from Sentinel-2 imagery with polygon masking.",
       "AI chat assistant (Kisan Mitra) for crop and weather guidance.",
       "Multilingual UI — English, Hindi, and Bengali — for rural accessibility.",
       "Soil-health monitoring driven by live IoT sensor data.",
@@ -253,7 +319,7 @@ const projectsUnordered: ProjectDetail[] = [
     slug: "health-ai",
     name: "Health AI",
     tagline: "AI-assisted medical platform",
-    category: "Full-Stack · AI",
+    category: "Full-Stack, AI",
     stack: ["Next.js", "TypeScript", "Express", "Prisma", "PostgreSQL", "OpenAI", "Google GenAI"],
     period: "2025",
     repo: "https://github.com/mukulkatewa/health-ai",
@@ -370,10 +436,11 @@ const projectsUnordered: ProjectDetail[] = [
 ];
 
 const projectOrder = [
+  "ai-interviewer",
+  "agrivision",
   "vhe",
   "kak-fit",
   "dexorders",
-  "agrivision",
   "galilio",
   "http-proxy",
   "health-ai",
@@ -387,21 +454,104 @@ export const projects: ProjectDetail[] = projectOrder
   .map((slug) => projectsUnordered.find((p) => p.slug === slug)!)
   .filter(Boolean);
 
-export const openSource = [
+export type PullRequest = {
+  number: number;
+  title: string;
+  url: string;
+  state: "merged" | "open";
+  date: string;
+  additions: number;
+  deletions: number;
+};
+
+export type OpenSourceRepo = {
+  repo: string;
+  url: string;
+  description: string;
+  stars?: string;
+  language: string;
+  prs: PullRequest[];
+};
+
+// Sourced from `gh search prs --author mukulkatewa`. Closed-unmerged PRs are left out.
+export const openSource: OpenSourceRepo[] = [
   {
-    project: "Clove",
-    org: "aniiiiXD/Clove",
-    url: "https://github.com/aniiiiXD/Clove/pulls?q=is%3Apr+is%3Aclosed+author%3Amukulkatewa",
-    count: 3,
-    description:
-      "Agent kernel for orchestrating autonomous workflows. Contributed features and bug fixes across 3 merged PRs.",
+    repo: "OrchestratorInc/agent-orchestrator",
+    url: "https://github.com/OrchestratorInc/agent-orchestrator",
+    description: "Plan, run, and supervise fleets of coding agents from task to merged PR.",
+    stars: "15K",
+    language: "TypeScript",
+    prs: [
+      {
+        number: 4933,
+        title: "Stop counting already-gone workspaces as reclaimed in session cleanup",
+        url: "https://github.com/OrchestratorInc/agent-orchestrator/pull/4933",
+        state: "merged",
+        date: "Sep 2026",
+        additions: 558,
+        deletions: 51,
+      },
+    ],
+  },
+  {
+    repo: "aniiiiXD/Clove",
+    url: "https://github.com/aniiiiXD/Clove",
+    description: "User-space microkernel for running AI agents as isolated, capability-scoped processes.",
+    language: "C++",
+    prs: [
+      {
+        number: 7,
+        title: "Rebuild the project website frontend",
+        url: "https://github.com/aniiiiXD/Clove/pull/7",
+        state: "open",
+        date: "May 2026",
+        additions: 46343,
+        deletions: 45296,
+      },
+      {
+        number: 6,
+        title: "Fix MCP server setup and the OpenRouter integration",
+        url: "https://github.com/aniiiiXD/Clove/pull/6",
+        state: "merged",
+        date: "Apr 2026",
+        additions: 63,
+        deletions: 26,
+      },
+      {
+        number: 5,
+        title: "Publish the CLI to npm for Linux, with postinstall setup and API server changes",
+        url: "https://github.com/aniiiiXD/Clove/pull/5",
+        state: "merged",
+        date: "Apr 2026",
+        additions: 2459,
+        deletions: 438,
+      },
+      {
+        number: 2,
+        title: "Add the project website plus CI and release workflows",
+        url: "https://github.com/aniiiiXD/Clove/pull/2",
+        state: "merged",
+        date: "Mar 2026",
+        additions: 8022,
+        deletions: 1,
+      },
+    ],
   },
 ];
 
 export const awards = [
-  { title: "Winner — OpenAI × NxtWave GenAI Buildathon", detail: "1st among 2,000+ teams" },
-  { title: "Finalist — Smart India Hackathon", detail: "National finalist · AgriVision" },
-  { title: "2nd Prize — 100xBuildathon", detail: "Runner-up among 1,500+ teams" },
+  {
+    title: "Winner, OpenAI Buildathon regional finals",
+    detail: "Competed against 2,000+ teams with Aetherius",
+  },
+  {
+    title: "National finalist, Smart India Hackathon",
+    detail: "MathWorks problem statement, with AgriVision",
+  },
+  {
+    title: "Runner-up, 100xEngineers Hackathon",
+    detail: "Generative AI buildathon with 3,500+ teams",
+  },
 ];
 
 export type TechIcon = { name: string; slug: string };
@@ -432,7 +582,11 @@ export const stack: TechIcon[] = [
   { name: "C", slug: "c" },
   { name: "C++", slug: "cplusplus" },
   { name: "Python", slug: "python" },
+  { name: "LangChain", slug: "langchain" },
+  { name: "Postman", slug: "postman" },
 ];
+
+
 
 export function getProject(slug: string) {
   return projectsUnordered.find((p) => p.slug === slug);

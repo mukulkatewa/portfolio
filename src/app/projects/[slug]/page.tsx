@@ -2,8 +2,6 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, Code2, ExternalLink } from "lucide-react";
 import { projects, getProject } from "@/lib/data";
-import { Nav } from "@/components/nav";
-import { Reveal } from "@/components/motion-primitives";
 
 export function generateStaticParams() {
   return projects.map((p) => ({ slug: p.slug }));
@@ -18,7 +16,7 @@ export async function generateMetadata({
   const p = getProject(slug);
   if (!p) return {};
   return {
-    title: `${p.name} — Mukul Katewa`,
+    title: p.name,
     description: p.shortDescription,
   };
 }
@@ -32,245 +30,138 @@ export default async function ProjectPage({
   const project = getProject(slug);
   if (!project) notFound();
 
+  const index = projects.findIndex((p) => p.slug === slug);
+  const nextProject = projects[(index + 1) % projects.length];
+
   return (
-    <main>
-      <Nav />
+    <article className="max-w-3xl">
+      <Link
+        href="/projects"
+        className="group inline-flex items-center gap-2 text-[0.9375rem] text-muted hover:text-heading transition-colors mb-10"
+      >
+        <ArrowLeft size={15} className="transition-transform group-hover:-translate-x-0.5" />
+        Projects
+      </Link>
 
-      <article className="pt-28 pb-24 md:pt-44 md:pb-36 px-5 md:px-10">
-        <div className="max-w-5xl mx-auto">
-          <Link
-            href="/#work"
-            className="group inline-flex items-center gap-2 font-mono text-[12px] uppercase tracking-[0.15em] text-[color:var(--muted)] hover:text-[color:var(--foreground)] transition-colors mb-14"
-          >
-            <ArrowLeft
-              size={14}
-              className="transition-transform group-hover:-translate-x-0.5"
-            />
-            All Projects
-          </Link>
-
-          <Reveal>
-            <h1 className="font-sans font-semibold text-[44px] md:text-7xl leading-[1.04] tracking-[-0.035em] text-[color:var(--foreground)] break-words">
-              {project.name}
-            </h1>
-          </Reveal>
-          <Reveal delay={1}>
-            <p className="mt-6 text-[18px] md:text-[20px] text-[color:var(--muted)] leading-[1.5] max-w-2xl">
-              {project.tagline}
-            </p>
-          </Reveal>
-
-          <Reveal delay={2}>
-            <div className="mt-8 flex items-center gap-3 flex-wrap text-[14px]">
-              {project.live && (
-                <a
-                  href={project.live}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group inline-flex items-center gap-2 px-4 py-2 rounded-md bg-[color:var(--foreground)] text-[color:var(--background)] hover:opacity-90 transition-opacity"
-                >
-                  <ExternalLink size={14} />
-                  Link
-                  <span className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">↗</span>
-                </a>
-              )}
-              {project.repo && (
-                <a
-                  href={project.repo}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group inline-flex items-center gap-2 text-[color:var(--foreground)]"
-                >
-                  <Code2 size={14} />
-                  <span className="hover-underline">View Source</span>
-                </a>
-              )}
-            </div>
-          </Reveal>
-
-          <div className="mt-16 md:mt-20 grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-14">
-            <div className="md:col-span-8 space-y-14">
-              <Prose title="Overview" body={project.overview} />
-
-              {project.architecture && (
-                <ArchSection items={project.architecture} />
-              )}
-
-              <LearnSection items={project.learnings} />
-            </div>
-
-            <aside className="md:col-span-4 space-y-4 md:sticky md:top-24 self-start">
-              <SidebarPanel title="Key Features">
-                <ul className="space-y-4">
-                  {project.highlights.map((h, i) => (
-                    <li key={h} className="flex gap-3 text-[14px] leading-[1.65] text-[color:var(--muted)]">
-                      <span className="font-mono text-[11px] text-[color:var(--muted-2)] pt-0.5 w-5 shrink-0">
-                        {String(i + 1).padStart(2, "0")}
-                      </span>
-                      <span className="text-[color:var(--foreground)]">{h}</span>
-                    </li>
-                  ))}
-                </ul>
-              </SidebarPanel>
-
-              <SidebarPanel title="Tech Stack">
-                <div className="flex flex-wrap gap-1.5">
-                  {project.stack.map((s) => (
-                    <span
-                      key={s}
-                      className="font-mono text-[11.5px] px-2.5 py-1 rounded-full border border-gray-200 text-[color:var(--muted)]"
-                    >
-                      {s}
-                    </span>
-                  ))}
-                </div>
-              </SidebarPanel>
-
-              <SidebarPanel title="Links">
-                <ul className="space-y-3 text-[14px]">
-                  {project.live && (
-                    <li>
-                      <a
-                        href={project.live}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="group inline-flex items-center gap-2 text-[color:var(--foreground)]"
-                      >
-                        <ExternalLink size={13} className="text-[color:var(--muted)]" />
-                        <span className="hover-underline">Live demo</span>
-                        <span className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">↗</span>
-                      </a>
-                    </li>
-                  )}
-                  {project.repo && (
-                    <li>
-                      <a
-                        href={project.repo}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="group inline-flex items-center gap-2 text-[color:var(--foreground)]"
-                      >
-                        <Code2 size={13} className="text-[color:var(--muted)]" />
-                        <span className="hover-underline">GitHub Repository</span>
-                        <span className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">↗</span>
-                      </a>
-                    </li>
-                  )}
-                </ul>
-              </SidebarPanel>
-
-              <SidebarPanel title="Meta">
-                <dl className="space-y-3 text-[13.5px]">
-                  <div className="flex justify-between gap-3">
-                    <dt className="text-[color:var(--muted)]">Category</dt>
-                    <dd className="text-[color:var(--foreground)] text-right">{project.category}</dd>
-                  </div>
-                  <div className="flex justify-between gap-3">
-                    <dt className="text-[color:var(--muted)]">Year</dt>
-                    <dd className="text-[color:var(--foreground)] text-right">{project.period}</dd>
-                  </div>
-                </dl>
-              </SidebarPanel>
-            </aside>
-          </div>
-
-          <Reveal>
-            <div className="mt-28 pt-10 border-t border-gray-200 flex items-center justify-between gap-4">
-              <Link
-                href="/#work"
-                className="group inline-flex items-center gap-2 text-[15px] text-[color:var(--muted)] hover:text-[color:var(--foreground)] transition-colors"
-              >
-                <ArrowLeft
-                  size={15}
-                  className="transition-transform group-hover:-translate-x-0.5"
-                />
-                All projects
-              </Link>
-              <Link
-                href="/#contact"
-                className="group inline-flex items-center gap-2 text-[15px] text-[color:var(--foreground)]"
-              >
-                <span className="hover-underline">Get in touch</span>
-                <span className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">↗</span>
-              </Link>
-            </div>
-          </Reveal>
-        </div>
-      </article>
-    </main>
-  );
-}
-
-function Prose({ title, body }: { title: string; body: string }) {
-  return (
-    <section>
-      <Reveal>
-        <h2 className="font-sans font-semibold text-2xl md:text-3xl tracking-[-0.02em] text-[color:var(--foreground)] mb-5">
-          {title}
-        </h2>
-      </Reveal>
-      <Reveal delay={1}>
-        <p className="text-[17px] md:text-[18px] leading-[1.8] text-[color:var(--muted)]">
-          {body}
-        </p>
-      </Reveal>
-    </section>
-  );
-}
-
-function ArchSection({ items }: { items: string[] }) {
-  return (
-    <section>
-      <Reveal>
-        <h2 className="font-sans font-semibold text-2xl md:text-3xl tracking-[-0.02em] text-[color:var(--foreground)] mb-5">
-          Architecture
-        </h2>
-      </Reveal>
-      <Reveal delay={1}>
-        <ol className="space-y-4">
-          {items.map((h, i) => (
-            <li key={h} className="flex gap-5 text-[17px] leading-[1.75] text-[color:var(--muted)]">
-              <span className="font-mono text-[12px] text-[color:var(--muted-2)] pt-[0.45em] w-6 shrink-0">
-                {String(i + 1).padStart(2, "0")}
-              </span>
-              <span>{h}</span>
-            </li>
-          ))}
-        </ol>
-      </Reveal>
-    </section>
-  );
-}
-
-function LearnSection({ items }: { items: string[] }) {
-  return (
-    <section>
-      <Reveal>
-        <h2 className="font-sans font-semibold text-2xl md:text-3xl tracking-[-0.02em] text-[color:var(--foreground)] mb-5">
-          What I learned
-        </h2>
-      </Reveal>
-      <Reveal delay={1}>
-        <ul className="space-y-4">
-          {items.map((h) => (
-            <li key={h} className="flex gap-4 text-[17px] leading-[1.75] text-[color:var(--muted)]">
-              <span className="mt-[0.75em] h-[2px] w-[14px] shrink-0 bg-[color:var(--foreground)]" />
-              <span>{h}</span>
-            </li>
-          ))}
-        </ul>
-      </Reveal>
-    </section>
-  );
-}
-
-function SidebarPanel({ title, children }: { title: string; children: React.ReactNode }) {
-  return (
-    <div className="rounded-lg border border-gray-200 bg-white p-5">
-      <p className="font-mono text-[11px] uppercase tracking-[0.15em] text-[color:var(--muted-2)] mb-4 pb-3 border-b border-gray-100">
-        {title}
+      <h1 className="text-[2.25rem] md:text-[2.75rem] leading-tight font-medium tracking-[-0.015em] text-heading break-words">
+        {project.name}
+      </h1>
+      <p className="mt-3 text-[1.25rem] text-muted leading-[1.5]">{project.tagline}</p>
+      <p className="mt-2 text-[0.9375rem] text-muted-2">
+        {project.category}, {project.period}
       </p>
+
+      <div className="mt-7 flex items-center gap-3 flex-wrap text-[0.9375rem]">
+        {project.live && (
+          <a
+            href={project.live}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 h-9 px-4 rounded-lg bg-heading text-background font-medium hover:opacity-90 transition-opacity"
+          >
+            <ExternalLink size={14} />
+            Open live demo
+          </a>
+        )}
+        {project.repo && (
+          <a
+            href={project.repo}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 h-9 px-4 rounded-lg border border-border text-heading hover:bg-hover transition-colors"
+          >
+            <Code2 size={14} />
+            View source
+          </a>
+        )}
+      </div>
+
+      {project.metrics && (
+        <dl className="mt-10 grid grid-cols-2 sm:grid-cols-3 gap-px rounded-xl overflow-hidden border border-border bg-border">
+          {project.metrics.map((m) => (
+            <div key={m.label} className="bg-surface px-4 py-3.5">
+              <dt className="text-[0.8125rem] text-muted">{m.label}</dt>
+              <dd className="mt-0.5 font-medium text-heading">{m.value}</dd>
+            </div>
+          ))}
+        </dl>
+      )}
+
+      <div className="mt-14 space-y-14">
+        <Block title="Overview">
+          <p className="leading-[1.8] text-foreground/90">{project.overview}</p>
+        </Block>
+
+        <Block title="What it does">
+          <BulletList items={project.highlights} />
+        </Block>
+
+        {project.architecture && (
+          <Block title="How it works">
+            {/* Architecture entries describe a request flow, so they are numbered. */}
+            <ol className="space-y-3.5">
+              {project.architecture.map((h, i) => (
+                <li key={h} className="flex gap-4 leading-[1.75] text-foreground/90">
+                  <span className="mt-[0.2em] inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-border text-[0.75rem] text-muted">
+                    {i + 1}
+                  </span>
+                  <span>{h}</span>
+                </li>
+              ))}
+            </ol>
+          </Block>
+        )}
+
+        <Block title="What I learned">
+          <BulletList items={project.learnings} />
+        </Block>
+
+        <Block title="Built with">
+          <div className="flex flex-wrap gap-1.5">
+            {project.stack.map((s) => (
+              <span key={s} className="text-[0.875rem] px-2.5 py-0.5 rounded-lg bg-chip text-foreground">
+                {s}
+              </span>
+            ))}
+          </div>
+        </Block>
+      </div>
+
+      <nav aria-label="More projects" className="mt-20 pt-8 border-t border-border flex items-center justify-between gap-4">
+        <Link
+          href="/projects"
+          className="group inline-flex items-center gap-2 text-[0.9375rem] text-muted hover:text-heading transition-colors"
+        >
+          <ArrowLeft size={15} className="transition-transform group-hover:-translate-x-0.5" />
+          All projects
+        </Link>
+        <Link href={`/projects/${nextProject.slug}`} className="group text-right">
+          <span className="block text-[0.8125rem] text-muted-2">Next project</span>
+          <span className="text-heading group-hover:text-link transition-colors">{nextProject.name}</span>
+        </Link>
+      </nav>
+    </article>
+  );
+}
+
+function Block({ title, children }: { title: string; children: React.ReactNode }) {
+  return (
+    <section>
+      <h2 className="text-[1.5rem] font-medium text-heading mb-5">{title}</h2>
       {children}
-    </div>
+    </section>
+  );
+}
+
+function BulletList({ items }: { items: string[] }) {
+  return (
+    <ul className="space-y-3">
+      {items.map((h) => (
+        <li key={h} className="flex gap-4 leading-[1.75] text-foreground/90">
+          <span aria-hidden className="mt-[0.75em] h-1 w-1 shrink-0 rounded-full bg-muted-2" />
+          <span>{h}</span>
+        </li>
+      ))}
+    </ul>
   );
 }
