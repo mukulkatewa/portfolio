@@ -65,6 +65,8 @@ export type ProjectDetail = {
   name: string;
   tagline: string;
   category: string;
+  /** Heading the project is listed under on /projects. */
+  group: "AI" | "Systems" | "Apps";
   featured?: boolean;
   stack: string[];
   period: string;
@@ -81,6 +83,7 @@ export type ProjectDetail = {
 const projectsUnordered: ProjectDetail[] = [
   {
     slug: "vhe",
+    group: "Systems",
     name: "Volatility Harvesting Engine",
     tagline: "Autonomous systematic trading platform for NSE equities",
     category: "FinTech, Trading Systems",
@@ -90,7 +93,7 @@ const projectsUnordered: ProjectDetail[] = [
     repo: "https://github.com/mukulkatewa/volatile_harvesting_engine",
     live: "https://mukul-vhe.duckdns.org/",
     shortDescription:
-      "Full-stack, production-deployed systematic trading platform for Indian NSE equities — ATR-driven dynamic grids, pair-spread arbitrage, and momentum breakouts, with a real-time WebSocket dashboard, Monte Carlo risk engine, and walk-forward validation.",
+      "Autonomous trading engine for NSE equities with live risk controls (FastAPI, WebSockets, Monte Carlo)",
     metrics: [
       { label: "Tests", value: "147 passing" },
       { label: "Strategies", value: "3" },
@@ -119,6 +122,7 @@ const projectsUnordered: ProjectDetail[] = [
   },
   {
     slug: "ai-interviewer",
+    group: "AI",
     name: "AI Voice Interviewer",
     tagline: "Real-time voice interviews with grounded, scored reports",
     category: "AI, Backend",
@@ -128,7 +132,7 @@ const projectsUnordered: ProjectDetail[] = [
     repo: "https://github.com/mukulkatewa/ai-interviewer",
     live: "https://ai-interviewer-five-black.vercel.app/",
     shortDescription:
-      "FastAPI/WebSocket voice-interview pipeline with browser VAD, Whisper transcription, streaming LLM replies, and sentence-by-sentence TTS, ending in transcript-grounded scored reports.",
+      "Real-time voice interviews with scored reports (FastAPI, WebSockets, Whisper)",
     metrics: [
       { label: "DB latency", value: "146 ms → 4 ms" },
       { label: "Transport", value: "WebSocket" },
@@ -155,6 +159,7 @@ const projectsUnordered: ProjectDetail[] = [
   },
   {
     slug: "kak-fit",
+    group: "Apps",
     name: "Kak Fit",
     tagline: "Hevy-style mobile workout tracker",
     category: "Mobile, Full-Stack",
@@ -164,7 +169,7 @@ const projectsUnordered: ProjectDetail[] = [
     repo: "https://github.com/mukulkatewa/kak_fit",
     live: "https://expo.dev/artifacts/eas/GIaEJJ-MxTCqQCjd9EeEF8Vmyb4VzqWPTtoFs97LyIg.apk",
     shortDescription:
-      "Mobile-first workout tracker in the vein of Hevy — routine building, set-by-set logging, personal records, and nutrition tracking, built as an Expo/React Native app on a tRPC + Prisma backend.",
+      "Workout and nutrition tracker for Android and iOS (Expo, tRPC, Prisma)",
     metrics: [
       { label: "Exercises", value: "855 (Wger API)" },
       { label: "Platform", value: "Android, iOS, Web" },
@@ -190,6 +195,7 @@ const projectsUnordered: ProjectDetail[] = [
   },
   {
     slug: "aetherius",
+    group: "AI",
     name: "Aetherius",
     tagline: "AI-powered business workflow optimization",
     category: "AI, Workflow",
@@ -197,7 +203,7 @@ const projectsUnordered: ProjectDetail[] = [
     stack: ["Next.js", "TypeScript", "OpenAI", "Node.js"],
     period: "2025",
     shortDescription:
-      "Generative-AI platform for automating and optimizing enterprise workflows — won the OpenAI Buildathon regional finals in a field of 2,000+ teams.",
+      "Finds bottlenecks in business workflows and proposes faster ones (Next.js, OpenAI)",
     overview:
       "Aetherius is a generative-AI platform that ingests existing business workflows, identifies inefficiencies, and proposes optimized replacements driven by agentic LLM planning. It was built in under a week for the OpenAI Buildathon and won the regional finals in a field of 2,000+ teams. The stack pairs a Next.js frontend with a typed Node backend and the OpenAI API for planning and rewriting workflow graphs.",
     highlights: [
@@ -213,6 +219,7 @@ const projectsUnordered: ProjectDetail[] = [
   },
   {
     slug: "clove",
+    group: "Systems",
     name: "Clove",
     tagline: "Microkernel runtime for AI agents",
     category: "AI, Systems",
@@ -222,7 +229,7 @@ const projectsUnordered: ProjectDetail[] = [
     repo: "https://github.com/aniiiiXD/Clove",
     live: "https://clovexo.com",
     shortDescription:
-      "Capability-based microkernel for staging autonomous AI agents at scale. Contributed across 3 merged PRs to the open-source project.",
+      "Microkernel that runs AI agents as isolated, sandboxed processes (3 merged PRs)",
     overview:
       "Clove is a user-space microkernel for staging AI agents and running large-scale ML experiments. It provides the missing kernel-level abstractions — process isolation, resource quotas, and fault boundaries — that let multi-agent systems and distributed training run reliably. I contributed across 3 merged PRs to the core runtime.",
     highlights: [
@@ -238,6 +245,7 @@ const projectsUnordered: ProjectDetail[] = [
   },
   {
     slug: "dexorders",
+    group: "Systems",
     name: "DexOrders",
     tagline: "Distributed order execution engine for Solana DEXs",
     category: "Distributed Systems",
@@ -247,7 +255,7 @@ const projectsUnordered: ProjectDetail[] = [
     repo: "https://github.com/mukulkatewa/dexOrders",
     live: "https://dexorders-yhto.onrender.com/",
     shortDescription:
-      "Production-focused Solana order execution engine that aggregates liquidity across Raydium, Meteora, Orca, and Jupiter with tuple-based routing.",
+      "Solana order router that finds the best price across four DEXs (Fastify, BullMQ, Redis)",
     metrics: [
       { label: "DEX venues", value: "4" },
       { label: "Routing strategies", value: "4" },
@@ -277,6 +285,7 @@ const projectsUnordered: ProjectDetail[] = [
   },
   {
     slug: "agrivision",
+    group: "AI",
     name: "AgriVision",
     tagline: "AI-powered precision agriculture with satellite analytics",
     category: "Full-Stack, AI",
@@ -286,7 +295,7 @@ const projectsUnordered: ProjectDetail[] = [
     repo: "https://github.com/mukulkatewa/farmAnalysis",
     live: "https://farm-analysis-zeta.vercel.app/",
     shortDescription:
-      "Precision agriculture platform with CNN/YOLO crop-health models, Sentinel-2 vegetation indices, and 16 region-specific LSTM risk forecasters. Smart India Hackathon national finalist.",
+      "Crop-health detection and crop-risk forecasting from satellite imagery (YOLO, LSTM, Sentinel-2)",
     metrics: [
       { label: "Languages", value: "EN, HI, BN" },
       { label: "Indices", value: "NDVI, NDRE, SAVI, EVI" },
@@ -317,6 +326,7 @@ const projectsUnordered: ProjectDetail[] = [
   },
   {
     slug: "health-ai",
+    group: "AI",
     name: "Health AI",
     tagline: "AI-assisted medical platform",
     category: "Full-Stack, AI",
@@ -325,7 +335,7 @@ const projectsUnordered: ProjectDetail[] = [
     repo: "https://github.com/mukulkatewa/health-ai",
     live: "https://medico-sync-cgkaobdxc-kaksaab2605-8884s-projects.vercel.app/",
     shortDescription:
-      "Web platform for doctor–patient workflows with AI-assisted features, built on Express + TypeScript and a Next.js client.",
+      "Doctor and patient platform with AI-assisted records and chat (Express, Prisma, OpenAI)",
     overview:
       "Health AI is a web platform designed to assist doctor–patient workflows with AI-driven features for record lookup and clinical help. The backend is a typed Express 5 service with Prisma and PostgreSQL, hardened with `express-rate-limit`, `express-validator`, and JWT-based auth using bcrypt for password hashing. Two AI integrations — OpenAI and Google GenAI — sit behind a provider-agnostic interface so prompts can be routed per use-case. The frontend is deployed on Vercel and integrates with the API for doctor and patient dashboards, appointments, and chat-style assistance.",
     highlights: [
@@ -341,6 +351,7 @@ const projectsUnordered: ProjectDetail[] = [
   },
   {
     slug: "event-booking",
+    group: "Apps",
     name: "Event Booking",
     tagline: "Full-stack event reservation system",
     category: "Full-Stack",
@@ -349,7 +360,7 @@ const projectsUnordered: ProjectDetail[] = [
     repo: "https://github.com/mukulkatewa/event-booking",
     live: "https://frontend-topaz-tau-47.vercel.app/",
     shortDescription:
-      "End-to-end event booking platform with authentication, ticketing, image uploads, and role-based access for students and clubs.",
+      "Event booking with seat selection and club admin roles (React, Express, Prisma)",
     overview:
       "A full-stack event booking platform with a React/Vite + shadcn/ui frontend and an Express + Prisma + PostgreSQL backend. The app supports user registration and JWT auth with student and admin/club roles, end-to-end event management (create, browse, view), ticket booking with seat selection, and Cloudinary-hosted event posters. The frontend uses shadcn/ui components over Tailwind for a polished, responsive UI; the backend exposes a clean REST surface over Prisma, with a migration-first DB workflow and environment-driven configuration for DB, JWT, and media credentials.",
     highlights: [
@@ -365,6 +376,7 @@ const projectsUnordered: ProjectDetail[] = [
   },
   {
     slug: "galilio",
+    group: "Apps",
     name: "Galilio",
     tagline: "Provably fair gaming platform",
     category: "Full-Stack",
@@ -373,7 +385,7 @@ const projectsUnordered: ProjectDetail[] = [
     repo: "https://github.com/mukulkatewa/galilio",
     live: "https://galilio-jmxy3axg3-kaksaab2605-8884s-projects.vercel.app/login",
     shortDescription:
-      "Full-stack gaming platform supporting Crash, Dice, Keno, Limbo, and DragonTower with provably fair cryptographic RNG.",
+      "Casino-style games with provably fair, verifiable outcomes (Express, Prisma, Postgres)",
     overview:
       "Galilio is a full-stack gaming platform inspired by modern crypto casinos, built with Node.js/Express + Prisma on the backend and React + Vite on the frontend. It ships five provably fair games — Dice, Keno, Limbo, Crash, and DragonTower — all driven by a provably fair RNG based on server/client seeds and nonce validation so outcomes can be independently verified. The platform handles secure JWT auth, real-time balance tracking, complete game history, and a responsive dark-themed UI. An admin dashboard surfaces user and game analytics. The backend is organized into controllers, routes, middleware, and services with a Prisma schema and migrations driving the database layer.",
     highlights: [
@@ -389,6 +401,7 @@ const projectsUnordered: ProjectDetail[] = [
   },
   {
     slug: "http-proxy",
+    group: "Systems",
     name: "HTTP Proxy Server",
     tagline: "Multi-threaded proxy in C with LRU cache",
     category: "Systems",
@@ -396,7 +409,7 @@ const projectsUnordered: ProjectDetail[] = [
     period: "2026",
     repo: "https://github.com/mukulkatewa/HTTPProxyINC",
     shortDescription:
-      "Concurrent HTTP proxy server in C using POSIX threads, semaphore-based synchronization, and an LRU cache.",
+      "Multi-threaded HTTP proxy with an LRU cache, written in C (pthreads, sockets)",
     overview:
       "A multi-threaded HTTP proxy server written in C, built to internalize OS primitives — threading, locks, semaphores, and caching. It uses POSIX threads with semaphore-based synchronization (sem_wait/sem_post) instead of pthread_join for worker coordination, which keeps the API parameter-free and makes the concurrency model easier to reason about. The proxy handles parallel client requests, speaks a full HTTP parsing + socket-programming pipeline, and layers in a thread-safe LRU cache on top to reduce redundant upstream traffic and improve response latency. The codebase is intentionally annotated — it's as much a learning artifact as it is a working proxy — and the README discusses limitations (fixed cache-entry size, single-method support) and extensions (multi-process parallelism, URL allow-listing).",
     highlights: [
@@ -412,6 +425,7 @@ const projectsUnordered: ProjectDetail[] = [
   },
   {
     slug: "key-management-system",
+    group: "Systems",
     name: "Key Management System",
     tagline: "Cryptographic key lifecycle service",
     category: "Security",
@@ -419,7 +433,7 @@ const projectsUnordered: ProjectDetail[] = [
     period: "2025",
     repo: "https://github.com/mukulkatewa/key-management-system",
     shortDescription:
-      "KMS for generating, rotating, and auditing cryptographic keys with role-based access and envelope encryption.",
+      "Generate, rotate, and audit encryption keys with envelope encryption (Node.js, Postgres)",
     overview:
       "A Key Management Service for handling the cryptographic key lifecycle end-to-end — generation, rotation, revocation, and auditing — with envelope encryption used to wrap application secrets. Role-based access cleanly separates administrative operations (create/rotate/revoke) from application consumers (encrypt/decrypt/sign). Every key operation is recorded in an append-only audit log. The service is designed as a least-privilege primitive: the consumer APIs never expose master keys, and rotation is non-disruptive so dependent systems can re-wrap at their own pace.",
     highlights: [

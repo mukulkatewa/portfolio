@@ -11,10 +11,7 @@ export const metadata: Metadata = {
 export default function ProjectsPage() {
   return (
     <div className="max-w-3xl">
-      <PageHeader
-        title="Projects"
-        description="Voice AI, crop-risk forecasting, a trading engine, and a Solana order router. Each page covers the architecture and what I learned building it."
-      />
+      <PageHeader title="Projects" />
       <ProjectListFull items={projects} />
     </div>
   );
